@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>TecOS PROCEED</title>
+	<link rel="manifest" href="./manifest.json">
+	<script>
+		if ("serviceWorker" in navigator){
+			navigator.serviceWorker.register("sw.js");
+		}
+	</script>
+</head>
+<body>
+	<h1>TecOS PROCEED</h1>
+	<h2>Pulsa el botón para obtener el texto enviado desde TecOS WORKS a PROCEED:</h2>  	
+	<button onclick="getTextWorks()">Obtener</button>
+
+	<script>
+		var mensajeAlerta;
+		var mensajeVariable;
+		var canal1 = new BroadcastChannel("canal1");
+        	canal1.onmessage = function(event) {
+			mensajeAlerta = event.data;
+			alert(mensajeAlerta);
+		};
+		var canal2 = new BroadcastChannel("canal2");
+        	canal2.onmessage = function(event) {
+			mensajeVariable = event.data;
+		};
+		function getTextWorks() {
+			alert(mensajeVariable);
+		}
+    	</script>
+</body>
+</html>
